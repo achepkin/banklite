@@ -41,4 +41,5 @@ The API documentation is available in the `docs/banklite.postman_collection.json
 
 To run the tests, use the following command:
 ```sh
-go test ./...
+make test
+```
