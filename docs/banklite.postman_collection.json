@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "65ce67c0-3d24-4bcf-a68e-10df8dfb35ea",
+		"name": "Bank Lite API",
+		"description": "A Postman collection for testing the Simple Bank API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4435342"
+	},
+	"item": [
+		{
+			"name": "Create a New Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"owner\": \"John Doe\",\n  \"initial_balance\": 1000\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/accounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Account Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/accounts/e1055f77-9a1a-402f-b77f-a3087c570c63",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"e1055f77-9a1a-402f-b77f-a3087c570c63"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/accounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"type\": \"deposit\",\n  \"amount\": 500\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/accounts/e1055f77-9a1a-402f-b77f-a3087c570c63/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"e1055f77-9a1a-402f-b77f-a3087c570c63",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Transactions for an Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/accounts/5ef777eb-c6ec-4539-a4e6-31c83ef6f85d/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"5ef777eb-c6ec-4539-a4e6-31c83ef6f85d",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer Between Accounts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"from_account_id\": \"46b261f3-7edc-4c28-bbb9-b456b4975b1a\",\n  \"to_account_id\": \"2b2e7de6-6709-4e36-a35b-70b4abdb1564\",\n  \"amount\": 200\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/transfer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

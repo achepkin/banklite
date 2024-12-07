@@ -1,0 +1,8 @@
+log-level: error
+all: true
+case: underscore
+recursive: true
+with-expecter: true
+dir: internal
+output: internal/pkg/mocks
+keeptree: true

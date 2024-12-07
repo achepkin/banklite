@@ -1,0 +1,12 @@
+services:
+  app:
+    depends_on: {}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      HTTP_ADDR: ":8080"
+      DEBUG_ERRORS: 1
+    command: ["./app"]
