@@ -2,9 +2,11 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/achepkin/banklite/internal/domain/entity"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
+
+	"github.com/achepkin/banklite/internal/domain/entity"
 )
 
 type TransactionHandler struct {
@@ -51,7 +53,7 @@ func (h *TransactionHandler) GetTransactions(w http.ResponseWriter, r *http.Requ
 	vars := mux.Vars(r)
 	accountID := vars["id"]
 
-	transactions, err := h.transactionService.GetTransactions(nil, accountID)
+	transactions, err := h.transactionService.GetTransactions(r.Context(), accountID)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

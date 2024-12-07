@@ -2,8 +2,9 @@ package storage
 
 import (
 	"context"
-	"github.com/achepkin/banklite/internal/domain/entity"
 	"sync"
+
+	"github.com/achepkin/banklite/internal/domain/entity"
 )
 
 type TransactionStorageInMemory struct {

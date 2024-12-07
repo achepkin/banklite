@@ -3,12 +3,14 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/achepkin/banklite/internal/domain"
-	"github.com/achepkin/banklite/internal/domain/entity"
-	"github.com/google/uuid"
-	"github.com/gorilla/mux"
 	"net/http"
 	"time"
+
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
+
+	"github.com/achepkin/banklite/internal/domain"
+	"github.com/achepkin/banklite/internal/domain/entity"
 )
 
 type AccountHandler struct {
@@ -36,7 +38,7 @@ func (h *AccountHandler) CreateAccount(w http.ResponseWriter, r *http.Request) {
 		CreatedAt: time.Now(),
 	}
 
-	err := h.accService.CreateAccount(nil, account)
+	err := h.accService.CreateAccount(r.Context(), account)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

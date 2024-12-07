@@ -2,9 +2,10 @@ package storage
 
 import (
 	"context"
+	"sync"
+
 	"github.com/achepkin/banklite/internal/domain"
 	"github.com/achepkin/banklite/internal/domain/entity"
-	"sync"
 )
 
 var _ domain.AccountRepository = (*AccountStorageInMemory)(nil)

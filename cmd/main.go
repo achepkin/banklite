@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/achepkin/banklite/internal/app"
-	_ "github.com/achepkin/banklite/internal/app"
-	"github.com/achepkin/banklite/internal/app/provider"
-	_ "github.com/golang-migrate/migrate/v4/database/postgres"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+
+	"github.com/achepkin/banklite/internal/app"
+	"github.com/achepkin/banklite/internal/app/provider"
 )
 
 func main() {

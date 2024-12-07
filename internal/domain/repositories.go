@@ -2,6 +2,7 @@ package domain
 
 import (
 	"context"
+
 	"github.com/achepkin/banklite/internal/domain/entity"
 )
 

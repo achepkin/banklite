@@ -2,13 +2,15 @@ package services
 
 import (
 	"context"
-	mocks "github.com/achepkin/banklite/internal/pkg/mocks/domain"
-	mocks_services "github.com/achepkin/banklite/internal/pkg/mocks/domain/services"
 	"testing"
 
-	"github.com/achepkin/banklite/internal/domain/entity"
+	mocks "github.com/achepkin/banklite/internal/pkg/mocks/domain"
+	mocks_services "github.com/achepkin/banklite/internal/pkg/mocks/domain/services"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+
+	"github.com/achepkin/banklite/internal/domain/entity"
 )
 
 func TestTransactionService_CreateTransaction(t *testing.T) {
@@ -93,7 +95,7 @@ func TestTransactionService_Transfer(t *testing.T) {
 	mockAccountRepo.EXPECT().GetAccount(ctx, toAccountID).Return(toAccount, nil).Once()
 	mockValidator.EXPECT().Validate(mock.Anything, fromAccount).Return(nil).Once()
 	mockValidator.EXPECT().Validate(mock.Anything, toAccount).Return(nil).Once()
-	mockTransactionRepo.EXPECT().CreateTransaction(nil, mock.Anything).Return(nil).Twice()
+	mockTransactionRepo.EXPECT().CreateTransaction(ctx, mock.Anything).Return(nil).Twice()
 	mockAccountRepo.EXPECT().UpdateAccount(fromAccount).Return(nil).Once()
 	mockAccountRepo.EXPECT().UpdateAccount(toAccount).Return(nil).Once()
 

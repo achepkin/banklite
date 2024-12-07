@@ -1,4 +1,5 @@
-.PHONY: dc run test lint
+.PHONY: up build run test lint
+make all: build test lint
 
 up:
 	docker compose up  --remove-orphans --build

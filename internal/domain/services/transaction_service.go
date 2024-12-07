@@ -3,9 +3,10 @@ package services
 import (
 	"context"
 	"fmt"
+	"time"
+
 	"github.com/achepkin/banklite/internal/domain"
 	"github.com/achepkin/banklite/internal/domain/entity"
-	"time"
 )
 
 type Task struct {
@@ -87,7 +88,7 @@ func (s *TransactionService) createTx(ctx context.Context, accountID string, txT
 
 	account.Apply(tx)
 
-	err = s.transactionRepo.CreateTransaction(nil, tx)
+	err = s.transactionRepo.CreateTransaction(ctx, tx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create transaction: %w", err)
 	}
