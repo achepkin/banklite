@@ -46,11 +46,11 @@ func NewTransactionService(
 		txResult:        make(chan Result),
 	}
 
-	s.StartTransactionProcessor()
+	s.startTransactionProcessor()
 	return s
 }
 
-func (s *TransactionService) StartTransactionProcessor() {
+func (s *TransactionService) startTransactionProcessor() {
 
 	process := func(tasks []Task) {
 		txs := make([]*entity.Transaction, 0, len(tasks))

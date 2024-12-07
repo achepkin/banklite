@@ -1,17 +1,12 @@
 package entity
 
 import (
-	"errors"
 	"time"
 
 	"github.com/google/uuid"
 )
 
 type TxType string
-
-var (
-	ErrInvalidAmount = errors.New("invalid amount")
-)
 
 const (
 	TxTypeDeposit    TxType = "deposit"
