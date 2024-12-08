@@ -30,3 +30,10 @@ func NewTransaction(accountID string, txType TxType, amount float64) *Transactio
 		Timestamp: time.Now(),
 	}
 }
+
+func (t *Transaction) RollbackType() TxType {
+	if t.Type == TxTypeDeposit {
+		return TxTypeWithdrawal
+	}
+	return TxTypeDeposit
+}

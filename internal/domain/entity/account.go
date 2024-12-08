@@ -17,3 +17,12 @@ func (a *Account) Apply(tx *Transaction) {
 		a.Balance -= tx.Amount
 	}
 }
+
+func (a *Account) Rollback(tx *Transaction) {
+	switch tx.Type {
+	case TxTypeDeposit:
+		a.Balance -= tx.Amount
+	case TxTypeWithdrawal:
+		a.Balance += tx.Amount
+	}
+}

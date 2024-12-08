@@ -57,7 +57,16 @@ func (s *TransactionService) startTransactionProcessor() {
 		for _, task := range tasks {
 			tx, err := s.createTx(task.ctx, task.accountID, task.txType, task.amount)
 			if err != nil {
-				s.txResult <- Result{err: err}
+				rbTxs, rbErr := s.Rollback(task.ctx, txs)
+				if rbErr != nil {
+					err = fmt.Errorf("transaction error: %w, rollback error: %v", err, rbErr)
+				}
+				txs = append(txs, rbTxs...)
+
+				s.txResult <- Result{
+					txs: txs,
+					err: err,
+				}
 				return
 			}
 			txs = append(txs, tx)
@@ -157,4 +166,17 @@ func (s *TransactionService) Transfer(ctx context.Context, fromAccountID string,
 		Amount:            amount,
 		Timestamp:         time.Now(),
 	}, nil
+}
+
+func (s *TransactionService) Rollback(ctx context.Context, txs []*entity.Transaction) ([]*entity.Transaction, error) {
+	rbTxs := make([]*entity.Transaction, 0, len(txs))
+	for _, tx := range txs {
+		rbTx, err := s.createTx(ctx, tx.AccountID, tx.RollbackType(), tx.Amount)
+		if err != nil {
+			return nil, err
+		}
+
+		rbTxs = append(rbTxs, rbTx)
+	}
+	return rbTxs, nil
 }
